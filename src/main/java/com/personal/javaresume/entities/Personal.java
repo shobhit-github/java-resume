@@ -89,6 +89,17 @@ public class Personal {
     @OneToMany(mappedBy = "personal", orphanRemoval = true)
     private List<Experience> experiences;
 
+    @OneToMany(mappedBy = "personal", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UserRequest> userRequests;
+
+    public List<UserRequest> getUserRequests() {
+        return userRequests;
+    }
+
+    public void setUserRequests(List<UserRequest> userRequests) {
+        this.userRequests = userRequests;
+    }
+
     public List<Experience> getExperiences() {
         return experiences;
     }

@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Profession {
@@ -32,6 +33,17 @@ public class Profession {
     @Temporal(TemporalType.DATE)
     @Column(nullable = false, insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date createdAt;
+
+    @OneToMany(mappedBy = "profession", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Skill> skills;
+
+    public List<Skill> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<Skill> skills) {
+        this.skills = skills;
+    }
 
     public Date getCreatedAt() {
         return createdAt;
