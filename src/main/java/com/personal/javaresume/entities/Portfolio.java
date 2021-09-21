@@ -60,14 +60,22 @@ public class Portfolio {
     private Date createdAt;
 
     @OneToMany(mappedBy = "portfolio", orphanRemoval = true)
-    private List<Technology> technologies;
-
-    @OneToMany(mappedBy = "portfolio", orphanRemoval = true)
     private List<PortfolioImage> portfolioImages;
 
     @Schema(defaultValue = "true", required = true)
     @Column(nullable = false, columnDefinition = "BOOLEAN default TRUE")
     private Boolean status = false;
+
+    @OneToMany(mappedBy = "portfolio", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PortfolioSkill> portfolioSkills;
+
+    public List<PortfolioSkill> getPortfolioSkills() {
+        return portfolioSkills;
+    }
+
+    public void setPortfolioSkills(List<PortfolioSkill> portfolioSkills) {
+        this.portfolioSkills = portfolioSkills;
+    }
 
     public Boolean getStatus() {
         return status;
@@ -83,14 +91,6 @@ public class Portfolio {
 
     public void setPortfolioImages(List<PortfolioImage> portfolioImages) {
         this.portfolioImages = portfolioImages;
-    }
-
-    public List<Technology> getTechnologies() {
-        return technologies;
-    }
-
-    public void setTechnologies(List<Technology> technologies) {
-        this.technologies = technologies;
     }
 
     public Integer getTeamSize() {

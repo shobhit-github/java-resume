@@ -3,7 +3,6 @@ package com.personal.javaresume.entities;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 
@@ -27,6 +26,18 @@ public class Skill {
     @ManyToOne
     @JoinColumn()
     private Profession profession;
+
+    @OneToOne(orphanRemoval = true)
+    @JoinColumn
+    private SkillDataset skill;
+
+    public SkillDataset getSkill() {
+        return skill;
+    }
+
+    public void setSkill(SkillDataset skill) {
+        this.skill = skill;
+    }
 
     public Profession getProfession() {
         return profession;
