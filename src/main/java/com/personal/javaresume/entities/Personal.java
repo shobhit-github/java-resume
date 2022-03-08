@@ -72,6 +72,14 @@ public class Personal {
     @UniqueDomain
     private String website;
 
+    @Schema(example = "123456", defaultValue = "123456", required = true)
+    @Column(length = 1000)
+    @NotBlank(message = "Please enter password")
+    private String password;
+
+    @Column(columnDefinition = "boolean default FALSE", nullable = false)
+    private boolean isMasterUser;
+
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false, insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
